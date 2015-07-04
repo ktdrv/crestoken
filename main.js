@@ -41,7 +41,7 @@ function get_hash_params() {
   return result;
 }
 
-var redirect_url = 'http://localhost:8080';
+var redirect_url = 'http://ktdrv.github.io/crestoken';
 var default_client_id = '96a55d0beb45456c852b8c645645fd48'; // OAuth client id
 var client_id = '';
 var scope = 'publicData';
@@ -83,7 +83,7 @@ $(function() {
     (hash_params.hasOwnProperty('state') && hash_params['state'] == get_cookie('state'))) {
 
       auth_token = hash_params['access_token'];
-      expiration = moment().add(60, 'seconds'); //+hash_params['expires_in']
+      expiration = moment().add(+hash_params['expires_in'], 'seconds');
 
       delete_cookie('state');
       delete_cookie('auth_token');
